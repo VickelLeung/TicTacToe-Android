@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vicke.mytictactoe.ComputerGame">
+
+    <RelativeLayout
+        android:layout_width="450dp"
+        android:layout_height="620dp"
+        android:layout_marginBottom="3dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/secondbg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.461"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/btnZero"
+            android:layout_width="85sp"
+            android:layout_height="85sp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/playerCounter"
+            android:layout_marginLeft="77dp"
+            android:layout_marginStart="77dp"
+            android:layout_marginTop="46dp"
+            android:text="@string/empty"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnOne"
+            android:layout_width="85sp"
+            android:layout_height="85sp"
+            android:layout_alignLeft="@+id/btnZero"
+            android:layout_alignStart="@+id/btnZero"
+            android:layout_below="@+id/btnZero"
+            android:text="@string/empty"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnTwo"
+            android:layout_width="85sp"
+            android:layout_height="85sp"
+            android:layout_alignLeft="@+id/btnOne"
+            android:layout_alignStart="@+id/btnOne"
+            android:layout_below="@+id/btnOne"
+            android:text="@string/empty"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnThree"
+            android:layout_width="85sp"
+            android:layout_height="85sp"
+            android:layout_above="@+id/btnFour"
+            android:layout_toEndOf="@+id/btnZero"
+            android:layout_toRightOf="@+id/btnZero"
+            android:text="@string/empty"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnFour"
+            android:layout_width="85sp"
+            android:layout_height="85sp"
+            android:layout_alignEnd="@+id/btnThree"
+            android:layout_alignRight="@+id/btnThree"
+            android:layout_alignTop="@+id/btnOne"
+            android:text="@string/empty"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnFive"
+            android:layout_width="85sp"
+            android:layout_height="85sp"
+            android:layout_below="@+id/btnFour"
+            android:layout_toEndOf="@+id/btnOne"
+            android:layout_toRightOf="@+id/btnOne"
+            android:text="@string/empty"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnSix"
+            android:layout_width="85sp"
+            android:layout_height="85sp"
+            android:layout_alignTop="@+id/btnThree"
+            android:layout_toEndOf="@+id/btnThree"
+            android:layout_toRightOf="@+id/btnThree"
+            android:text="@string/empty"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnSeven"
+            android:layout_width="85sp"
+            android:layout_height="85sp"
+            android:layout_below="@+id/btnThree"
+            android:layout_toEndOf="@+id/btnThree"
+            android:layout_toRightOf="@+id/btnThree"
+            android:text="@string/empty"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnEigth"
+            android:layout_width="85sp"
+            android:layout_height="85sp"
+            android:layout_below="@+id/btnSeven"
+            android:layout_toEndOf="@+id/btnFive"
+            android:layout_toRightOf="@+id/btnFive"
+            android:text="@string/empty"
+            android:textSize="30sp" />
+
+        <Button
+            android:id="@+id/btnMenuComp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="46dp"
+            android:layout_toEndOf="@+id/btnRestart"
+            android:layout_toRightOf="@+id/btnRestart"
+            android:text="@string/mainMenu" />
+
+        <Button
+            android:id="@+id/btnRestart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/btnMenuComp"
+            android:layout_alignBottom="@+id/btnMenuComp"
+            android:layout_toEndOf="@+id/btnTwo"
+            android:layout_toRightOf="@+id/btnTwo"
+            android:text="@string/restart" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="78dp"
+            android:layout_toLeftOf="@+id/btnThree"
+            android:layout_toStartOf="@+id/btnThree"
+            android:text="@string/player"
+            android:textSize="24sp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="232dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView3"
+            android:layout_alignBottom="@+id/textView3"
+            android:layout_alignEnd="@+id/btnSix"
+            android:layout_alignRight="@+id/btnSix"
+            android:layout_marginEnd="13dp"
+            android:layout_marginRight="13dp"
+            android:text="@string/computer"
+            android:textSize="24sp"
+            app:layout_constraintTop_toBottomOf="@+id/textView3"
+            tools:layout_editor_absoluteX="232dp" />
+
+        <TextView
+            android:id="@+id/playerCounter"
+            android:layout_width="45dp"
+            android:layout_height="34dp"
+            android:layout_alignBaseline="@+id/computerCounter"
+            android:layout_alignBottom="@+id/computerCounter"
+            android:layout_alignEnd="@+id/textView3"
+            android:layout_alignRight="@+id/textView3"
+            android:text="@string/zero"
+            android:textSize="24sp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/computerCounter"
+            android:layout_width="56dp"
+            android:layout_height="30dp"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4"
+            android:layout_below="@+id/textView4"
+            android:layout_marginTop="11dp"
+            android:text="@string/zero"
+            android:textSize="24sp"
+            app:layout_constraintRight_toRightOf="parent"
+            tools:layout_editor_absoluteY="64dp" />
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

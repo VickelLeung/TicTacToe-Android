@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Tic Tac Toe</string>
+    <string name="play">Click to Play!</string>
+    <string name="howTo">Rules</string>
+    <string name="mainMenu">Main Menu</string>
+    <string name="quit">Quit</string>
+    <string name="playerVplayer">Player vs Player</string>
+    <string name="computerVplayer">Player vs Computer</string>
+    <string name="restart">Restart</string>
+    <string name="empty"></string>
+    <string name="player">Player</string>
+    <string name="computer">Computer</string>
+    <string name="zero">0</string>
+    <string name="player1">Player 1</string>
+    <string name="player2">Player 2</string>
+    <string name="howWin">How to win</string>
+    <string name="howNotWin">How not to win</string>
+    <string name="copyright">Made by Vickel Leung with love </string>
+</resources>
