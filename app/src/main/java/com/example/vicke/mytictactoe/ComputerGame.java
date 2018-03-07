@@ -63,6 +63,7 @@ public class ComputerGame extends AppCompatActivity {
                 }
                 //check if player/computer won to set scores
                 setScores();
+                autoReset();
             }
         });
 
@@ -78,6 +79,7 @@ public class ComputerGame extends AppCompatActivity {
                     computerPlace();
                 }
                 setScores();
+                autoReset();
             }
         });
 
@@ -93,6 +95,7 @@ public class ComputerGame extends AppCompatActivity {
                     computerPlace();
                 }
                 setScores();
+                autoReset();
             }
         });
 
@@ -108,6 +111,7 @@ public class ComputerGame extends AppCompatActivity {
                     computerPlace();
                 }
                 setScores();
+                autoReset();
             }
         });
 
@@ -123,6 +127,7 @@ public class ComputerGame extends AppCompatActivity {
                     computerPlace();
                 }
                 setScores();
+                autoReset();
             }
         });
 
@@ -138,6 +143,7 @@ public class ComputerGame extends AppCompatActivity {
                     computerPlace();
                 }
                 setScores();
+                autoReset();
             }
         });
 
@@ -153,6 +159,7 @@ public class ComputerGame extends AppCompatActivity {
                     computerPlace();
                 }
                 setScores();
+                autoReset();
             }
         });
 
@@ -168,6 +175,7 @@ public class ComputerGame extends AppCompatActivity {
                     computerPlace();
                 }
                 setScores();
+                autoReset();
             }
         });
 
@@ -183,34 +191,14 @@ public class ComputerGame extends AppCompatActivity {
                     computerPlace();
                 }
                 setScores();
+                autoReset();
             }
         });
 
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //reset all text to to empty
-                btnZero.setText("");
-                btnOne.setText("");
-                btnTwo.setText("");
-                btnThree.setText("");
-                btnFour.setText("");
-                btnFive.setText("");
-                btnSix.setText("");
-                btnSeven.setText("");
-                btnEigth.setText("");
-
-                //reset all grid to 0's
-                for(int i = 0; i<grid.length; i++)
-                    grid[i] = 0;
-
-                //reset the number of turn
-                numberOfTurn = 1;
-
-                //reset scores
-                toggleWin = 0;
-
+                resetGame();
             }
         });
 
@@ -840,4 +828,40 @@ public class ComputerGame extends AppCompatActivity {
             }
         }
     }
+
+    //reset the game attribute to start a new game
+    public void resetGame(){
+
+        //reset all text to to empty
+        btnZero.setText("");
+        btnOne.setText("");
+        btnTwo.setText("");
+        btnThree.setText("");
+        btnFour.setText("");
+        btnFive.setText("");
+        btnSix.setText("");
+        btnSeven.setText("");
+        btnEigth.setText("");
+
+        //reset all grid to 0's
+        for(int i = 0; i<grid.length; i++)
+            grid[i] = 0;
+
+        //reset the number of turn
+        numberOfTurn = 1;
+
+        //reset scores
+        toggleWin = 0;
+
+    }
+
+    public void autoReset(){
+
+        if(numberOfTurn == 10 && checkWin() == 0){
+            resetGame();
+            Toast.makeText(getApplicationContext(), "No players has won the game, board has been reseted.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
 }

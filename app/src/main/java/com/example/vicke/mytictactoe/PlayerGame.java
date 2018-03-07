@@ -64,6 +64,7 @@ public class PlayerGame extends AppCompatActivity {
                     }
                 }
                 setScore();
+                autoReset();
             }
         });
 
@@ -93,6 +94,7 @@ public class PlayerGame extends AppCompatActivity {
                     }
                 }
                 setScore();
+                autoReset();
             }
         });
 
@@ -120,6 +122,7 @@ public class PlayerGame extends AppCompatActivity {
                     }
                 }
                 setScore();
+                autoReset();
             }
         });
 
@@ -147,6 +150,7 @@ public class PlayerGame extends AppCompatActivity {
                     }
                 }
                 setScore();
+                autoReset();
             }
         });
 
@@ -175,6 +179,8 @@ public class PlayerGame extends AppCompatActivity {
                     }
                 }
                 setScore();
+                autoReset();
+
             }
         });
 
@@ -203,6 +209,7 @@ public class PlayerGame extends AppCompatActivity {
                     }
                 }
                 setScore();
+                autoReset();
             }
         });
 
@@ -230,6 +237,7 @@ public class PlayerGame extends AppCompatActivity {
                     }
                 }
                 setScore();
+                autoReset();
             }
         });
 
@@ -257,6 +265,7 @@ public class PlayerGame extends AppCompatActivity {
                     }
                 }
                 setScore();
+                autoReset();
             }
         });
 
@@ -283,52 +292,21 @@ public class PlayerGame extends AppCompatActivity {
                     }
                 }
                 setScore();
+                autoReset();
             }
         });
 
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-                //reset grid
-                for(int i = 0; i <grid.length; i++)
-                    grid[i] = 0;
-
-                //reset text
-                btnZero.setText("");
-                btnOne.setText("");
-                btnTwo.setText("");
-                btnThree.setText("");
-                btnFour.setText("");
-                btnFive.setText("");
-                btnSix.setText("");
-                btnSeven.setText("");
-                btnEight.setText("");
-
-                btnZero.setTextColor(0x00000000);
-                btnOne.setTextColor(0x00000000);
-                btnTwo.setTextColor(0x00000000);
-                btnThree.setTextColor(0x00000000);
-                btnFour.setTextColor(0x00000000);
-                btnFive.setTextColor(0x00000000);
-                btnSix.setTextColor(0x00000000);
-                btnSeven.setTextColor(0x00000000);
-                btnEight.setTextColor(0x00000000);
-
-                //reset number of turn
-                numberOfTurn = 1;
-
-                //reset toggle win
-                toggleWin = 0;
-
-            }
+                resetGame();
+           }
         });
 
 
         btnMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
                 Intent intent = new Intent(PlayerGame.this, MainActivity.class);
                 startActivity(intent);
 
@@ -341,6 +319,42 @@ public class PlayerGame extends AppCompatActivity {
     //147
     //258
 
+    public void resetGame(){
+        //reset grid
+        for(int i = 0; i <grid.length; i++)
+            grid[i] = 0;
+
+        //reset text
+        btnZero.setText("");
+        btnOne.setText("");
+        btnTwo.setText("");
+        btnThree.setText("");
+        btnFour.setText("");
+        btnFive.setText("");
+        btnSix.setText("");
+        btnSeven.setText("");
+        btnEight.setText("");
+
+        //reset color of buttons
+        btnZero.setTextColor(0x00000000);
+        btnOne.setTextColor(0x00000000);
+        btnTwo.setTextColor(0x00000000);
+        btnThree.setTextColor(0x00000000);
+        btnFour.setTextColor(0x00000000);
+        btnFive.setTextColor(0x00000000);
+        btnSix.setTextColor(0x00000000);
+        btnSeven.setTextColor(0x00000000);
+        btnEight.setTextColor(0x00000000);
+
+        //reset number of turn
+        numberOfTurn = 1;
+
+        //reset toggle win
+        toggleWin = 0;
+
+    }
+
+    //check if any players won the game
     public int checkWin(){
         //horizontal win for player 1
         if (grid[0] == 1 && grid[3] == 1 && grid[6] == 1) {
@@ -442,6 +456,7 @@ public class PlayerGame extends AppCompatActivity {
         return 0;
     }
 
+    //set the scores of players
     public void setScore(){
         if(checkWin() == 1 && toggleWin == 0){
 
@@ -458,5 +473,16 @@ public class PlayerGame extends AppCompatActivity {
         }
 
     }
+
+    //auto reset if no wins
+    public void autoReset(){
+        if(numberOfTurn == 10 && checkWin() == 0){
+            resetGame();
+            Toast.makeText(getApplicationContext(), "No players has won the game, board has been reseted.", Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+
 
 }
