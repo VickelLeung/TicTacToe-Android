@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.vicke.mytictactoe.rollTheDice">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/secondbg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
+
+        <Button
+            android:id="@+id/rollDice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="51dp"
+            android:text="@string/rollDice" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/playerDice"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginBottom="64dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginStart="40dp"
+            android:text="Even = Player"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/textView8"
+            android:layout_alignBottom="@+id/textView8"
+            android:layout_marginLeft="55dp"
+            android:layout_marginStart="55dp"
+            android:layout_toEndOf="@+id/textView8"
+            android:layout_toRightOf="@+id/textView8"
+            android:text="Odd = Computer"
+            android:textSize="18sp" />
+
+        <ImageView
+            android:id="@+id/playerDice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/rollDice"
+            android:layout_alignEnd="@+id/rollDice"
+            android:layout_alignRight="@+id/rollDice"
+            android:layout_marginBottom="71dp"
+            app:srcCompat="@drawable/dice0" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="224dp"
+        android:layout_height="112dp"
+        android:layout_above="@+id/rollDice"
+        android:layout_alignLeft="@+id/rollDice"
+        android:layout_alignStart="@+id/rollDice"
+        android:layout_marginTop="16dp"
+        android:text="Roll the dice to see who goes first!"
+        android:textSize="28sp"
+        android:textStyle="bold"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>

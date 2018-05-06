@@ -32,7 +32,10 @@ public class Category extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Intent goComputer = new Intent(Category.this, ComputerGame.class);
+//                Intent goComputer = new Intent(Category.this, ComputerGame.class);
+//                startActivity(goComputer);
+
+                Intent goComputer = new Intent(Category.this, rollTheDice.class);
                 startActivity(goComputer);
 
             }

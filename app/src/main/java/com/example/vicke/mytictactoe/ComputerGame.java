@@ -1,12 +1,15 @@
 package com.example.vicke.mytictactoe;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
+import java.util.Random;
 
 public class ComputerGame extends AppCompatActivity {
 
@@ -16,6 +19,8 @@ public class ComputerGame extends AppCompatActivity {
     private int computerCounter, playerCounter = 0;
     private TextView playerWin, computerWin;
     private int toggleWin = 0;
+    private int playFirst = -1;
+    private AlertDialog.Builder builder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +42,20 @@ public class ComputerGame extends AppCompatActivity {
         btnMainMenu = findViewById(R.id.btnMenuComp);
         computerWin = findViewById(R.id.computerCounter);
 
+        builder = new AlertDialog.Builder(this);
+
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            int numberRolled = extras.getInt("numberRolled");
+            playFirst = numberRolled;
+        }
+
+        //check if computer play first
+        if(playFirst % 2 == 1 )
+            compPlayFirst();
+
+
 //        grid
         /*
            0 3 6
@@ -52,18 +71,10 @@ public class ComputerGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                //if player/computer did not wins then set X and computer take one turn
-                // also check if it is available to place
-                if(checkWin() == 0 && (grid[0] ==0 ) ){
-                    btnZero.setText("X");
-                    btnZero.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    numberOfTurn++;
-                    grid[0] = 1;
-                    computerPlace();
-                }
-                //check if player/computer won to set scores
-                setScores();
-                autoReset();
+//                if(playFirst == 0)
+                playerPlayFirst(0,btnZero);
+//                else if(playFirst == 1)
+//                    compPlayFirst();
             }
         });
 
@@ -71,15 +82,10 @@ public class ComputerGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(checkWin() == 0 && (grid[1] == 0 ) ){
-                    btnOne.setText("X");
-                    btnOne.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    numberOfTurn++;
-                    grid[1] = 1;
-                    computerPlace();
-                }
-                setScores();
-                autoReset();
+
+                playerPlayFirst(1, btnOne);
+
+
             }
         });
 
@@ -87,15 +93,7 @@ public class ComputerGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(checkWin() == 0 && (grid[2] == 0 ) ){
-                    btnTwo.setText("X");
-                    btnTwo.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    numberOfTurn++;
-                    grid[2] = 1;
-                    computerPlace();
-                }
-                setScores();
-                autoReset();
+               playerPlayFirst(2, btnTwo);
             }
         });
 
@@ -103,15 +101,8 @@ public class ComputerGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(checkWin() == 0 && (grid[3] == 0 ) ){
-                    btnThree.setText("X");
-                    btnThree.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    numberOfTurn++;
-                    grid[3] = 1;
-                    computerPlace();
-                }
-                setScores();
-                autoReset();
+                playerPlayFirst(3, btnThree);
+
             }
         });
 
@@ -119,15 +110,7 @@ public class ComputerGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(checkWin() == 0 && (grid[4] == 0 ) ){
-                    btnFour.setText("X");
-                    btnFour.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    numberOfTurn++;
-                    grid[4] = 1;
-                    computerPlace();
-                }
-                setScores();
-                autoReset();
+                playerPlayFirst(4, btnFour);
             }
         });
 
@@ -135,15 +118,7 @@ public class ComputerGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(checkWin() == 0 && (grid[5] == 0) ){
-                    btnFive.setText("X");
-                    btnFive.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    numberOfTurn++;
-                    grid[5] = 1;
-                    computerPlace();
-                }
-                setScores();
-                autoReset();
+                playerPlayFirst(5, btnFive);
             }
         });
 
@@ -151,15 +126,7 @@ public class ComputerGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(checkWin() == 0 && (grid[6] == 0 ) ){
-                    btnSix.setText("X");
-                    btnSix.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    numberOfTurn++;
-                    grid[6] = 1;
-                    computerPlace();
-                }
-                setScores();
-                autoReset();
+                playerPlayFirst(6, btnSix);
             }
         });
 
@@ -167,15 +134,8 @@ public class ComputerGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(checkWin() == 0 && (grid[7] == 0 ) ){
-                    btnSeven.setText("X");
-                    btnSeven.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    numberOfTurn++;
-                    grid[7] = 1;
-                    computerPlace();
-                }
-                setScores();
-                autoReset();
+                playerPlayFirst(7, btnSeven);
+
             }
         });
 
@@ -183,21 +143,15 @@ public class ComputerGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(checkWin() == 0 && (grid[8] == 0 ) ){
-                    btnEigth.setText("X");
-                    btnEigth.setTextColor(getResources().getColor(R.color.colorPrimary));
-                    numberOfTurn++;
-                    grid[8] = 1;
-                    computerPlace();
-                }
-                setScores();
-                autoReset();
+                playerPlayFirst(8, btnEigth);
+
             }
         });
 
         btnRestart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(checkWin() == 0 && numberOfTurn != 9)
                 resetGame();
             }
         });
@@ -215,18 +169,59 @@ public class ComputerGame extends AppCompatActivity {
         if(checkWin() == 1 && toggleWin == 0){
             toggleWin = 1;
             playerCounter++;
-            Toast.makeText(getApplicationContext(),"You won congratulation!",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(),"You won congratulation!",Toast.LENGTH_LONG).show();
             playerWin.setText(String.valueOf(playerCounter));
+
+            genericBuilder("Congratulation! The player ");
         }
         else if(checkWin() == 2 && toggleWin == 0){
             toggleWin = 1;
             computerCounter++;
-            Toast.makeText(getApplicationContext(),"Oh no, the compute won this round.",Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(),"Oh no, the compute won this round.",Toast.LENGTH_LONG).show();
             computerWin.setText(String.valueOf(computerCounter));
+
+            genericBuilder("Oh no! The computer ");
+
         }
     }
 
-    /*
+    //run the game
+    public void playerPlayFirst(int x, Button btn){
+
+        //if player/computer did not wins then set X and computer take one turn
+        // also check if it is available to place
+        if(checkWin() == 0 && (grid[x] == 0 ) ){
+            btn.setText("X");
+            btn.setTextColor(getResources().getColor(R.color.colorPrimary));
+            numberOfTurn++;
+            grid[x] = 1;
+            computerPlace();
+        }
+        setScores();
+        autoReset();
+
+    }
+
+    //choose who start first using remainder as odd/even. 1-> computer, 0-> human
+    public int startFirst(){
+
+        //generate random number
+        Random rand = new Random();
+
+        //101 is max and 1 is min
+        int n = rand.nextInt(101)+1;
+
+        //check if it is even or odd
+
+        if(n % 2 == 0){
+            return 0;
+        }
+        else
+            return 1;
+
+    }
+
+        /*
     check if the player/computer has won the game and update the counter
     *return: 0 for false, 1 for player, 2 for computer
     */
@@ -810,9 +805,13 @@ public class ComputerGame extends AppCompatActivity {
         //computer try to win
         placeForWin();
 
+        //computer deflect 80% of time
+
+
         //computer try to deflect player
         if(numberOfTurn %2 == 0) {
             deflect();
+
 
             if(numberOfTurn % 2 == 0 && (grid[1] == 1 || grid[3] == 1 || grid[5] == 1 || grid[7] == 1) )
                 cornerDeath();
@@ -829,39 +828,122 @@ public class ComputerGame extends AppCompatActivity {
         }
     }
 
+    //if computer start first, randomly place in the array
+    public void compPlayFirst(){
+
+        //get random numbers
+        Random rand = new Random();
+
+        int r = rand.nextInt(8);
+
+        //place the computer turn on grid
+        if(r == 0)
+            setGrid(0, btnZero);
+        if(r == 1)
+            setGrid(1, btnOne);
+        if(r == 2)
+            setGrid(2, btnTwo);
+        if(r == 3)
+            setGrid(3, btnThree);
+        if(r == 4)
+            setGrid(4, btnFour);
+        if(r == 5)
+            setGrid(5, btnFive);
+        if(r == 6)
+            setGrid(6, btnSix);
+        if(r == 7)
+            setGrid(7, btnSeven);
+        if(r == 8)
+            setGrid(8, btnEigth);
+
+    }
+
+    public void setGrid(int x, Button btn){
+
+            grid[x] = 2;
+            btn.setText("O");
+            btn.setTextColor(getResources().getColor(R.color.red));
+    }
+
     //reset the game attribute to start a new game
     public void resetGame(){
 
-        //reset all text to to empty
-        btnZero.setText("");
-        btnOne.setText("");
-        btnTwo.setText("");
-        btnThree.setText("");
-        btnFour.setText("");
-        btnFive.setText("");
-        btnSix.setText("");
-        btnSeven.setText("");
-        btnEigth.setText("");
+            //reset all text to to empty
+            btnZero.setText("");
+            btnOne.setText("");
+            btnTwo.setText("");
+            btnThree.setText("");
+            btnFour.setText("");
+            btnFive.setText("");
+            btnSix.setText("");
+            btnSeven.setText("");
+            btnEigth.setText("");
 
-        //reset all grid to 0's
-        for(int i = 0; i<grid.length; i++)
-            grid[i] = 0;
+            //reset all grid to 0's
+            for (int i = 0; i < grid.length; i++)
+                grid[i] = 0;
 
-        //reset the number of turn
-        numberOfTurn = 1;
+            //reset the number of turn
+            numberOfTurn = 1;
 
-        //reset scores
-        toggleWin = 0;
+            //reset scores
+            toggleWin = 0;
+
+            //check if computer play first
+            if (playFirst % 2 == 1)
+                compPlayFirst();
 
     }
 
     public void autoReset(){
 
-        if(numberOfTurn == 10 && checkWin() == 0){
-            resetGame();
-            Toast.makeText(getApplicationContext(), "No players has won the game, board has been reseted.", Toast.LENGTH_SHORT).show();
-        }
+        builder = new AlertDialog.Builder(this);
 
+        if(playFirst%2 == 1){
+
+            if(numberOfTurn == 9 && checkWin() == 0){
+//                Toast.makeText(getApplicationContext(), "No players has won the game, board has been reseted.", Toast.LENGTH_SHORT).show();
+
+                genericBuilder("No player ");
+            }
+        }
+        else if(playFirst%2 == 0){
+            if(numberOfTurn == 10 && checkWin() == 0){
+//                Toast.makeText(getApplicationContext(), "No players has won the game, board has been reseted.", Toast.LENGTH_SHORT).show();
+
+                genericBuilder("No player ");
+            }
+        }
     }
 
+    public void genericBuilder(String s){
+        builder.setCancelable(false);
+        builder.setTitle( s + "has won the game");
+        builder.setMessage("Would you like to play again?");
+
+        builder.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Intent mainMenu = new Intent(ComputerGame.this, MainActivity.class);
+                        startActivity(mainMenu);
+
+                    }
+                });
+        builder.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        playFirst++;
+                        resetGame();
+                    }
+                });
+
+        final AlertDialog dialog = builder.create();
+        builder.setCancelable(false);
+        dialog.setCanceledOnTouchOutside(false);
+        dialog.show();
+    }
 }

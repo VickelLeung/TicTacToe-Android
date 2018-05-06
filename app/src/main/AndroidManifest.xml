@@ -19,11 +19,13 @@
         <activity android:name=".howTo" />
         <activity android:name=".Category" />
         <activity android:name=".ComputerGame" />
-        <activity android:name=".PlayerGame"></activity>
+        <activity android:name=".PlayerGame" />
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
+        <activity android:name=".rollTheDice"></activity>
     </application>
 
 </manifest>
